@@ -18,6 +18,9 @@ class TasksList extends StatelessWidget {
               onCheckboxToggled: (bool checkboxState) {
                 taskModel.toggleTaskDoneAtIndex(index);
               },
+              onLongPress: () {
+                taskModel.removeTaskAtIndex(index);
+              },
             );
           },
         ).build(context);

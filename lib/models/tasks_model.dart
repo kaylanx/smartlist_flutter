@@ -21,4 +21,9 @@ class TasksModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeTaskAtIndex(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+
 }
