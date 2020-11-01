@@ -17,6 +17,9 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onLongPress: onLongPress,
+      onTap: () {
+        onCheckboxToggled(isChecked);
+      },
       leading: Text(
         taskTitle,
         style: TextStyle(
