@@ -12,19 +12,46 @@ class TasksList extends StatelessWidget {
           itemCount: taskModel.taskCount,
           itemBuilder: (context, index) {
             final currentTask = taskModel.tasks[index];
-            return TaskTile(
-              taskTitle: currentTask.name,
-              isChecked: currentTask.isDone,
-              onCheckboxToggled: (bool checkboxState) {
-                taskModel.toggleTaskDoneAtIndex(index);
-              },
-              onLongPress: () {
+            return Dismissible(
+              key: Key(currentTask.name),
+              direction: DismissDirection.endToStart,
+              background: Container(
+                color: Colors.red,
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    deleteLabel(),
+                  ],
+                ),
+              ),
+              onDismissed: (direction) {
                 taskModel.removeTaskAtIndex(index);
+                Scaffold.of(context).showSnackBar(
+                    SnackBar(content: Text('${currentTask.name} removed')));
               },
+              child: TaskTile(
+                taskTitle: currentTask.name,
+                isChecked: currentTask.isDone,
+                onCheckboxToggled: (bool checkboxState) {
+                  taskModel.toggleTaskDoneAtIndex(index);
+                },
+                onLongPress: () {
+                  taskModel.removeTaskAtIndex(index);
+                },
+              ),
             );
           },
         ).build(context);
       },
     );
   }
+
+  Widget deleteLabel() => Text(
+        'Delete',
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.white,
+        ),
+      );
 }

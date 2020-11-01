@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:todoey_flutter/models/task.dart';
 
 class TasksModel with ChangeNotifier {
-
   List<Task> _tasks = [];
 
   UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
@@ -25,5 +24,4 @@ class TasksModel with ChangeNotifier {
     _tasks.removeAt(index);
     notifyListeners();
   }
-
 }

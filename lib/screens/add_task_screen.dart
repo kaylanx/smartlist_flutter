@@ -4,10 +4,8 @@ import 'package:todoey_flutter/models/task.dart';
 import 'package:todoey_flutter/models/tasks_model.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     String text;
 
     return Container(
