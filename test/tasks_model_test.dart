@@ -27,7 +27,7 @@ void main() {
     final taskToToggle = Task(name: 'Task');
     tasksModel.addTask(taskToToggle);
     expect(taskToToggle.isDone, false);
-    tasksModel.toggleTaskDoneAtIndex(0);
+    tasksModel.toggleTaskDone(taskToToggle);
     expect(taskToToggle.isDone, true);
   });
 
@@ -36,21 +36,21 @@ void main() {
     final taskToToggle = Task(name: 'Task');
     tasksModel.addTask(taskToToggle);
     expect(taskToToggle.isDone, false);
-    tasksModel.toggleTaskDoneAtIndex(0);
+    tasksModel.toggleTaskDone(taskToToggle);
     expect(taskToToggle.isDone, true);
-    tasksModel.toggleTaskDoneAtIndex(0);
+    tasksModel.toggleTaskDone(taskToToggle);
     expect(taskToToggle.isDone, false);
   });
 
   test('Tasks are removed', () {
     final tasksModel = TasksModel();
-    final taskToToggle = Task(name: 'Task');
-    tasksModel.addTask(taskToToggle);
+    final taskToRemove = Task(name: 'Task');
+    tasksModel.addTask(taskToRemove);
 
     expect(tasksModel.taskCount,1);
     expect(tasksModel.tasks.length,1);
 
-    tasksModel.removeTaskAtIndex(0);
+    tasksModel.removeTask(taskToRemove);
     expect(tasksModel.taskCount,0);
     expect(tasksModel.tasks.length,0);
   });

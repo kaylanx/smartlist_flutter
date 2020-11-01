@@ -26,7 +26,7 @@ class TasksList extends StatelessWidget {
                 ),
               ),
               onDismissed: (direction) {
-                taskModel.removeTaskAtIndex(index);
+                taskModel.removeTask(currentTask);
                 Scaffold.of(context).showSnackBar(
                     SnackBar(content: Text('${currentTask.name} removed')));
               },
@@ -34,10 +34,10 @@ class TasksList extends StatelessWidget {
                 taskTitle: currentTask.name,
                 isChecked: currentTask.isDone,
                 onCheckboxToggled: (bool checkboxState) {
-                  taskModel.toggleTaskDoneAtIndex(index);
+                  taskModel.toggleTaskDone(currentTask);
                 },
                 onLongPress: () {
-                  taskModel.removeTaskAtIndex(index);
+                  taskModel.removeTask(currentTask);
                 },
               ),
             );

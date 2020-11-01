@@ -15,13 +15,13 @@ class TasksModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleTaskDoneAtIndex(int index) {
-    _tasks[index].toggleDone();
+  void toggleTaskDone(Task task) {
+    task.toggleDone();
     notifyListeners();
   }
 
-  void removeTaskAtIndex(int index) {
-    _tasks.removeAt(index);
+  void removeTask(Task task) {
+    _tasks.remove(task);
     notifyListeners();
   }
 }
