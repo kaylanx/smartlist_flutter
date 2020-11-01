@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/models/tasks_model.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function(String) onTaskAdd;
-
-  const AddTaskScreen({@required this.onTaskAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class AddTaskScreen extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                onTaskAdd(text);
+                context.read<TasksModel>().addTask(Task(name: text));
                 Navigator.pop(context);
               },
               child: Text(
