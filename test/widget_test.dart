@@ -1,29 +1,109 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:todoey_flutter/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  testWidgets('Adding task appears', (WidgetTester tester) async {
+    await tester.pumpWidget(SmartListApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    mainScreenDisplayed();
+    addTaskScreenNotShown();
+    await addButtonPressed(tester);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    addTaskScreenShown();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await addTask(tester);
+    addTaskScreenNotShown();
+    checkTaskAdded();
   });
+
+  testWidgets('Toggling task gets toggled', (WidgetTester tester) async {
+    await tester.pumpWidget(SmartListApp());
+    await addButtonPressed(tester);
+    await addTask(tester);
+
+    final checkboxFinder = find.byType(Checkbox);
+    Checkbox checkbox = tester.firstWidget(checkboxFinder);
+    expect(checkbox.value, false);
+    Finder textFinder = find.text('This is a test task');
+    Text text = tester.firstWidget(textFinder);
+    expect(text.style.decoration, TextDecoration.none);
+
+    await tester.tap(checkboxFinder);
+    await tester.pump();
+    checkbox = tester.firstWidget(checkboxFinder);
+    expect(checkbox.value, true);
+
+    textFinder = find.text('This is a test task');
+    text = tester.firstWidget(textFinder);
+    expect(text.style.decoration, TextDecoration.lineThrough);
+  });
+
+  testWidgets('Delete task disappears from screen',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(SmartListApp());
+
+    mainScreenDisplayed();
+    addTaskScreenNotShown();
+    await addButtonPressed(tester);
+
+    addTaskScreenShown();
+
+    await addTask(tester);
+    addTaskScreenNotShown();
+    checkTaskAdded();
+
+    await removeTask(tester);
+    await tester.pumpAndSettle();
+
+    expect(find.text('0 Tasks'), findsOneWidget);
+    expect(find.text('This is a test task'), findsNothing);
+  });
+}
+
+Future removeTask(WidgetTester tester) async {
+  final dismissibleFinder = find.byType(Dismissible);
+  await tester.drag(dismissibleFinder, Offset(-500.0, 0.0));
+  await tester.pumpAndSettle();
+}
+
+void checkTaskAdded() {
+  expect(find.text('0 Tasks'), findsNothing);
+  expect(find.text('1 Tasks'), findsOneWidget);
+  expect(find.text('This is a test task'), findsOneWidget);
+  expect(find.byType(Checkbox), findsOneWidget);
+}
+
+void addTaskScreenShown() {
+  expect(find.text('Add Task'), findsOneWidget);
+  expect(find.byType(TextField), findsOneWidget);
+  expect(find.text('Add'), findsOneWidget);
+}
+
+Future addButtonPressed(WidgetTester tester) async {
+  await tester.pump();
+  await tester.tap(find.byIcon(Icons.add));
+
+  // Bottom sheet animation
+  await tester.pumpAndSettle();
+}
+
+void mainScreenDisplayed() {
+  expect(find.text('Smart List'), findsOneWidget);
+  expect(find.text('0 Tasks'), findsOneWidget);
+  expect(find.byIcon(Icons.add), findsOneWidget);
+}
+
+Future addTask(WidgetTester tester) async {
+  await tester.enterText(find.byType(TextField), 'This is a test task');
+  await tester.tap(find.text('Add'));
+
+  // Bottom sheet animation
+  await tester.pumpAndSettle();
+}
+
+void addTaskScreenNotShown() {
+  expect(find.text('Add Task'), findsNothing);
+  expect(find.byType(TextField), findsNothing);
+  expect(find.text('Add'), findsNothing);
 }

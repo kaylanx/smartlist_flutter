@@ -7,10 +7,13 @@ import 'package:todoey_flutter/widgets/tasks_list.dart';
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: primaryColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: primaryColor,
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
@@ -40,18 +43,8 @@ class TasksScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    Icons.list,
-                    size: 30.0,
-                    color: Colors.lightBlueAccent,
-                  ),
-                  radius: 30.0,
-                ),
-                SizedBox(height: 10.0),
                 Text(
-                  "Todoey",
+                  "Smart List",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50.0,

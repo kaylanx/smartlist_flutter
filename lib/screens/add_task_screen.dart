@@ -8,6 +8,8 @@ class AddTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String text;
 
+    final primaryColor = Theme.of(context).primaryColor;
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -27,7 +29,7 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
-                color: Colors.lightBlueAccent,
+                color: primaryColor,
               ),
             ),
             TextField(
@@ -52,7 +54,7 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               height: 50.0,
-              color: Colors.lightBlueAccent,
+              color: primaryColor,
             )
           ],
         ),
