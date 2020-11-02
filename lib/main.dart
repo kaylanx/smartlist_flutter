@@ -15,6 +15,7 @@ class SmartListApp extends StatelessWidget {
       child: MaterialApp(
         theme: Theme.of(context).copyWith(
           primaryColor: Colors.deepPurple,
+          disabledColor: Colors.deepPurple[100],
         ),
         home: TasksScreen(),
       ),
