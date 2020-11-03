@@ -11,8 +11,11 @@ void main() {
     await addButtonPressed(tester);
 
     addTaskScreenShown();
+    addTaskButtonIsDisabled(tester);
 
-    await addTask(tester);
+    await enterTaskText(tester);
+    addTaskButtonIsEnabled(tester);
+    await clickAddTaskButton(tester);
     addTaskScreenNotShown();
     checkTaskAdded();
   });
@@ -20,7 +23,8 @@ void main() {
   testWidgets('Toggling task gets toggled', (WidgetTester tester) async {
     await tester.pumpWidget(SmartListApp());
     await addButtonPressed(tester);
-    await addTask(tester);
+    await enterTaskText(tester);
+    await clickAddTaskButton(tester);
 
     final checkboxFinder = find.byType(Checkbox);
     Checkbox checkbox = tester.firstWidget(checkboxFinder);
@@ -49,7 +53,8 @@ void main() {
 
     addTaskScreenShown();
 
-    await addTask(tester);
+    await enterTaskText(tester);
+    await clickAddTaskButton(tester);
     addTaskScreenNotShown();
     checkTaskAdded();
 
@@ -59,6 +64,16 @@ void main() {
     expect(find.text('0 Tasks'), findsOneWidget);
     expect(find.text('This is a test task'), findsNothing);
   });
+}
+
+void addTaskButtonIsDisabled(WidgetTester tester) {
+  expect(tester.widget<MaterialButton>(find.byType(MaterialButton)).enabled,
+      isFalse);
+}
+
+void addTaskButtonIsEnabled(WidgetTester tester) {
+  expect(tester.widget<MaterialButton>(find.byType(MaterialButton)).enabled,
+      isTrue);
 }
 
 Future removeTask(WidgetTester tester) async {
@@ -94,10 +109,13 @@ void mainScreenDisplayed() {
   expect(find.byIcon(Icons.add), findsOneWidget);
 }
 
-Future addTask(WidgetTester tester) async {
+Future enterTaskText(WidgetTester tester) async {
   await tester.enterText(find.byType(TextField), 'This is a test task');
-  await tester.tap(find.text('Add'));
+  await tester.pump();
+}
 
+Future clickAddTaskButton(WidgetTester tester) async {
+  await tester.tap(find.text('Add'));
   // Bottom sheet animation
   await tester.pumpAndSettle();
 }
