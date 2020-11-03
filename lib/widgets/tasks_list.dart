@@ -27,7 +27,7 @@ class TasksList extends StatelessWidget {
               ),
               onDismissed: (direction) {
                 taskModel.removeTask(currentTask);
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('${currentTask.name} removed')));
               },
               child: TaskTile(
