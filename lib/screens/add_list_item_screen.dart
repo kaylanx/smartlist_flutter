@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/models/task.dart';
-import 'package:todoey_flutter/models/tasks_model.dart';
+import 'package:todoey_flutter/models/list_item.dart';
+import 'package:todoey_flutter/models/list_items_model.dart';
 import 'package:todoey_flutter/widgets/rounded_button.dart';
 
-class AddTaskScreen extends StatefulWidget {
+class AddListItemScreen extends StatefulWidget {
   @override
-  _AddTaskScreenState createState() => _AddTaskScreenState();
+  _AddListItemScreenState createState() => _AddListItemScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _AddListItemScreenState extends State<AddListItemScreen> {
 
   String text;
 
@@ -21,7 +21,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     final disabledColor = Theme.of(context).disabledColor;
 
     final Function onAddPressed = () {
-      context.read<TasksModel>().addTask(Task(name: text));
+      context.read<ListItemsModel>().addListItem(ListItem(name: text));
       Navigator.pop(context);
     };
 
@@ -40,7 +40,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add Task',
+              'Add Item',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,

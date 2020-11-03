@@ -61,7 +61,7 @@ void main() {
     await removeTask(tester);
     await tester.pumpAndSettle();
 
-    expect(find.text('0 Tasks'), findsOneWidget);
+    expect(find.text('0 items'), findsOneWidget);
     expect(find.text('This is a test task'), findsNothing);
   });
 }
@@ -83,14 +83,14 @@ Future removeTask(WidgetTester tester) async {
 }
 
 void checkTaskAdded() {
-  expect(find.text('0 Tasks'), findsNothing);
-  expect(find.text('1 Tasks'), findsOneWidget);
+  expect(find.text('0 items'), findsNothing);
+  expect(find.text('1 item'), findsOneWidget);
   expect(find.text('This is a test task'), findsOneWidget);
   expect(find.byType(Checkbox), findsOneWidget);
 }
 
 void addTaskScreenShown() {
-  expect(find.text('Add Task'), findsOneWidget);
+  expect(find.text('Add Item'), findsOneWidget);
   expect(find.byType(TextField), findsOneWidget);
   expect(find.text('Add'), findsOneWidget);
 }
@@ -105,7 +105,7 @@ Future addButtonPressed(WidgetTester tester) async {
 
 void mainScreenDisplayed() {
   expect(find.text('Smart List'), findsOneWidget);
-  expect(find.text('0 Tasks'), findsOneWidget);
+  expect(find.text('0 items'), findsOneWidget);
   expect(find.byIcon(Icons.add), findsOneWidget);
 }
 
@@ -121,7 +121,7 @@ Future clickAddTaskButton(WidgetTester tester) async {
 }
 
 void addTaskScreenNotShown() {
-  expect(find.text('Add Task'), findsNothing);
+  expect(find.text('Add Item'), findsNothing);
   expect(find.byType(TextField), findsNothing);
   expect(find.text('Add'), findsNothing);
 }
