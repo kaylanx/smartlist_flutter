@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/models/list_items_model.dart';
-import 'package:todoey_flutter/screens/list_items_screen.dart';
+import 'package:smartlist_flutter/models/list_items_model.dart';
+import 'package:smartlist_flutter/screens/list_items_screen.dart';
 
 void main() {
   runApp(SmartListApp());

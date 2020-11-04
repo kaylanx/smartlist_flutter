@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:todoey_flutter/models/list_item.dart';
+import 'package:smartlist_flutter/models/list_item.dart';
 
 class ListItemsModel with ChangeNotifier {
   List<ListItem> _listItems

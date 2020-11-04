@@ -1,4 +1,4 @@
-package name.kayley.todoey_flutter
+package name.kayley.smartlist_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 

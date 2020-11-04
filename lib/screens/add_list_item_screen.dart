@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/models/list_item.dart';
-import 'package:todoey_flutter/models/list_items_model.dart';
-import 'package:todoey_flutter/widgets/rounded_button.dart';
+import 'package:smartlist_flutter/models/list_item.dart';
+import 'package:smartlist_flutter/models/list_items_model.dart';
+import 'package:smartlist_flutter/widgets/rounded_button.dart';
 
 class AddListItemScreen extends StatefulWidget {
   @override

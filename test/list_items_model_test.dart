@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:todoey_flutter/models/list_item.dart';
-import 'package:todoey_flutter/models/list_items_model.dart';
+import 'package:smartlist_flutter/models/list_item.dart';
+import 'package:smartlist_flutter/models/list_items_model.dart';
 
 void main() {
 

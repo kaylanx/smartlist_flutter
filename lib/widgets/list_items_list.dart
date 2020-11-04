@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/models/list_items_model.dart';
-import 'package:todoey_flutter/widgets/list_item_tile.dart';
+import 'package:smartlist_flutter/models/list_items_model.dart';
+import 'package:smartlist_flutter/widgets/list_item_tile.dart';
 
 class ListItemsList extends StatelessWidget {
   @override

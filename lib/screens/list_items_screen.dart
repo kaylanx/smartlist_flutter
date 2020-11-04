@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/models/list_items_model.dart';
-import 'package:todoey_flutter/screens/add_list_item_screen.dart';
-import 'package:todoey_flutter/widgets/list_items_list.dart';
+import 'package:smartlist_flutter/models/list_items_model.dart';
+import 'package:smartlist_flutter/screens/add_list_item_screen.dart';
+import 'package:smartlist_flutter/widgets/list_items_list.dart';
 
 class ListItemsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
