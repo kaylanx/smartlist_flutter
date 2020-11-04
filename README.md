@@ -1,6 +1,6 @@
-# todoey_flutter
+# smartlist_flutter
 
-A todo application
+A smart shopping list application
 
 ## Getting Started
 
